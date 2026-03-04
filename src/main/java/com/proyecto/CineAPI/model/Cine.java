@@ -98,4 +98,6 @@ public class Cine {
     private Date fechaHoraInicio;
     private boolean subtitulada;
 
+    //hola yo
+
 }
