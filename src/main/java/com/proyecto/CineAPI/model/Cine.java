@@ -4,7 +4,8 @@ import java.util.Date;
 public class Cine {
 
 
-    public Cine(Long idL, String nombrePelicula, String genero, String clasificacion, String sinopsis, int duracionMin, String tipoSala, Date fechaHoraInicio, boolean subtitulada) {
+    public Cine(Long idL, String nombrePelicula, String genero, String clasificacion, String sinopsis,
+                int duracionMin, String tipoSala, Date fechaHoraInicio, boolean subtitulada) {
         this.idL = idL;
         this.nombrePelicula = nombrePelicula;
         this.genero = genero;
@@ -97,7 +98,5 @@ public class Cine {
     private String tipoSala;
     private Date fechaHoraInicio;
     private boolean subtitulada;
-
-    //hola yo
 
 }

@@ -13,7 +13,16 @@ public class CineRepositorio {
     public  List<Cine> crearPeliculas(Cine pelicula) {
         peliculas.add(pelicula);
         return peliculas;
+    }
 
+    public String eliminarPelicula(Long id) {
+        if (peliculas.isEmpty()){
+            return "No hay películas por borrar";
+        }
+        if (peliculas.removeIf(pelicula->pelicula.getIdL().equals(id))) {
+            return "Película eliminada";
+        }
+        return "No se encontró la película";
     }
 
 }
