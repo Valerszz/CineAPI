@@ -18,7 +18,7 @@ public class CineServicio {
         return cineRepositorio.crearPeliculas(pelicula);
     }
 
-    public String eliminarPelicula(Long id) {
-        return cineRepositorio.eliminarPelicula(id);
+    public void eliminarPelicula(Long id) {
+        cineRepositorio.eliminarPelicula(id);
     }
 }

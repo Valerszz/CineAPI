@@ -1,4 +1,6 @@
 package com.proyecto.CineAPI.repositorio;
+import com.proyecto.CineAPI.exception.NoHayPeliculas;
+import com.proyecto.CineAPI.exception.PeliculaNoEncontrada;
 import com.proyecto.CineAPI.model.Cine;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +17,15 @@ public class CineRepositorio {
         return peliculas;
     }
 
-    public String eliminarPelicula(Long id) {
+    public void eliminarPelicula(Long id) {
         if (peliculas.isEmpty()){
-            return "No hay películas por borrar";
+            throw new NoHayPeliculas("No hay películas para borrar");
         }
-        if (peliculas.removeIf(pelicula->pelicula.getIdL().equals(id))) {
-            return "Película eliminada";
+        boolean eliminada = peliculas.removeIf(peli->peli.getIdL().equals(id));
+
+        if (!eliminada) {
+            throw new PeliculaNoEncontrada("No se encontró la película con id: " + id);
         }
-        return "No se encontró la película";
     }
 
 }

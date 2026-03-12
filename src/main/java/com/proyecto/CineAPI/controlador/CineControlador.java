@@ -15,7 +15,8 @@ public class CineControlador {
 
     @DeleteMapping("{idL}")
     public String borrarPelicula(@PathVariable Long idL) {
-        return cineServicio.eliminarPelicula(idL);
+        cineServicio.eliminarPelicula(idL);
+        return "Pelicula eliminada con éxito.";
     }
 
 
