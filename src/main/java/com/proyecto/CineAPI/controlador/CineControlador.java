@@ -4,13 +4,9 @@ import com.proyecto.CineAPI.model.Cine;
 import com.proyecto.CineAPI.servicio.CineServicio;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/peliculas")
 public class CineControlador {
@@ -19,6 +15,12 @@ public class CineControlador {
 
     public CineControlador(CineServicio cineServicio) {
         this.cineServicio = cineServicio;
+    }
+
+    @PostMapping
+    public ResponseEntity<Cine> crearPelicula(@RequestBody Cine pelicula) {
+        Cine creada = cineServicio.crearPelicula(pelicula);
+        return new ResponseEntity<>(creada, HttpStatus.CREATED);
     }
 
     @GetMapping
