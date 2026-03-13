@@ -17,5 +17,11 @@ public class CineServicio {
     public List<Cine> crearPeliculas(Cine pelicula) {
         return cineRepositorio.crearPeliculas(pelicula);
     }
+    public List<Cine> obtenerPeliculas(){
+        return cineRepositorio.obtenerPeliculas();
+    }
+    public Cine obtenerPeliculaPorId(Long idL){
+        return cineRepositorio.obtenerPeliculaPorId(idL);
+    }
 
 }

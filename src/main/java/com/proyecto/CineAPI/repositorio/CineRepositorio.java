@@ -16,4 +16,15 @@ public class CineRepositorio {
 
     }
 
+    public  List<Cine> obtenerPeliculas(){
+        return peliculas;
+    }
+    //todavia falta la lógica de buscar una pelicula por el id, solo se puso return null para subirlo
+    // y guardar cambios
+    public Cine obtenerPeliculaPorId(Long idL){
+        return null;
+    }
+
+
+
 }
