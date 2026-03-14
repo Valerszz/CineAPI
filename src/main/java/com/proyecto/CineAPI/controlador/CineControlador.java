@@ -31,11 +31,6 @@ public class CineControlador {
     @GetMapping("/{idL}")
     public ResponseEntity<Cine> obtenerPeliculaPorId(@PathVariable Long idL){
         Cine pelicula = cineServicio.obtenerPeliculaPorId(idL);
-
-        if (pelicula == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
         return new ResponseEntity<>(pelicula, HttpStatus.OK);
     }
 
