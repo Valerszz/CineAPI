@@ -38,7 +38,16 @@ public class CineControlador {
 
         return new ResponseEntity<>(pelicula, HttpStatus.OK);
     }
+    @PutMapping("/{idL}")
+    public ResponseEntity<Cine> actualizarPelicula(@PathVariable Long idL, @RequestBody Cine peliculaActualizada) {
+        Cine pelicula = cineServicio.actualizarPelicula(idL, peliculaActualizada);
 
+        if (pelicula == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(pelicula, HttpStatus.OK);
+    }
 
 
 }

@@ -28,4 +28,17 @@ public class CineRepositorio {
         return null;
     }
 
+    public Cine actualizarPelicula(Long idL, Cine peliculaActualizada) {
+        for (int i = 0; i < peliculas.size(); i++) {
+            Cine peliculaExistente = peliculas.get(i);
+
+            if (peliculaExistente.getIdL().equals(idL)) {
+                peliculaActualizada.setIdL(idL);
+                peliculas.set(i, peliculaActualizada);
+                log.info("Pelicula actualizada correctamente con id {}", idL);
+                return peliculaActualizada;
+            }
+        }
+        return null;
+    }
 }

@@ -11,7 +11,11 @@ import java.util.List;
 @Service
 @Slf4j
 public class CineServicio {
-    private CineRepositorio cineRepositorio;
+    private final CineRepositorio cineRepositorio;
+
+    public CineServicio(CineRepositorio cineRepositorio) {
+        this.cineRepositorio = cineRepositorio;
+    }
 
     private static final List<String> salasValidas =
             Arrays.asList("2D", "3D", "VIP", "IMAX", "4DX", "KIDS", "XD");
@@ -29,10 +33,27 @@ public class CineServicio {
         return cineRepositorio.obtenerPeliculaPorId(idL);
     }
 
+    public Cine actualizarPelicula(Long idL, Cine peliculaActualizada) {
+        validarPelicula(peliculaActualizada);
+        Cine pelicula = cineRepositorio.actualizarPelicula(idL, peliculaActualizada);
+
+        if (pelicula == null) {
+            throw new ValidacionExepcion("No existe una pelicula con el id: " + idL);
+        }
+
+        log.info("Pelicula actualizada con id {}", idL);
+        return pelicula;
+    }
+
     private void validarPelicula(Cine pelicula) {
         if (pelicula.getNombrePelicula() == null || pelicula.getNombrePelicula().isBlank()) {
             log.warn("Error: el titulo de la pelicula esta mal");
             throw new ValidacionExepcion("El titulo de la pelicula no debe estar vacio");
+        }
+
+        if (pelicula.getDuracionMin() <= 0) {
+            log.warn("Error: la duracion debe ser mayor a 0");
+            throw new ValidacionExepcion("La duracion de la pelicula debe ser mayor a 0");
         }
 
         if (pelicula.getTipoSala() == null || !salasValidas.contains(pelicula.getTipoSala().toUpperCase())) {
